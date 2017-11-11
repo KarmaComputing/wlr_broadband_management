@@ -1,0 +1,89 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="karma_wlr.list">
+      <field name="name">karma_wlr list</field>
+      <field name="model">karma_wlr.karma_wlr</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="lead_id"/>
+          <field name="partner_id"/>
+          <field name="router"/>
+          <field name="ssid"/>
+          <field name="wifi_password"/>
+          <field name="adsl_username"/>
+          <field name="adsl_password"/>
+          <field name="service"/>
+          <field name="configured_modem"/>
+          <field name="sent_modem"/>
+          <field name="line_installed"/>
+          <field name="confirmed_online"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="karma_wlr.action_window">
+      <field name="name">WLR Orders</field>
+      <field name="res_model">karma_wlr.karma_wlr</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <record model="ir.actions.server" id="karma_wlr.action_server">
+      <field name="name">karma_wlr server</field>
+      <field name="model_id" ref="model_karma_wlr_karma_wlr"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="karma_wlr.form_view">
+      <field name="name">karma_wlr.form</field>
+      <field name="model">karma_wlr.karma_wlr</field>
+      <field name="arch" type="xml">
+          <form string="WLR Form">
+            <sheet>
+              <group>
+                <field name="lead_id"/>
+                <field name="partner_id"/>
+                <field name="router"/>
+                <field name="ssid"/>
+                <field name="wifi_password"/>
+                <field name="adsl_username"/>
+                <field name="adsl_password"/>
+                <field name="service"/>
+                <field name="configured_modem"/>
+                <field name="sent_modem"/>
+                <field name="line_installed"/>
+                <field name="confirmed_online"/>
+                <notebook>
+                  <page string="Description">
+                    <field name="description" />
+                  </page>
+                  <page string="About">
+                    This is an example of notebooks 
+                  </page>
+                </notebook>
+              </group>
+            </sheet>
+          </form>
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Karm WLRR" id="karma_wlr.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="Menu 1" id="karma_wlr.menu_1" parent="karma_wlr.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="List" id="karma_wlr.menu_1_list" parent="karma_wlr.menu_1"
+              action="karma_wlr.action_window"/>
+  </data>
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <template id="detail_page" name="Defail page">
+            <t t-call="website.layout">
+                <div class="oe_structure">
+                  <div class="container">
+                    <center><h3>Company Detail Page</h3></center>
+                    <t t-foreach="companies" t-as="company">
+                     <h4><span t-esc="company.name" /></h4>
+                     <table class="table-striped table">
+                      <tr>
+                       <td>Phone:</td>
+                       <td><span t-esc="company.phone" /></td>
+                      </tr>
+                     </table>
+                    </t>
+                  </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
